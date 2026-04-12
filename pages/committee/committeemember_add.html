@@ -1,0 +1,35 @@
+<ion-header>
+  <headercomponent></headercomponent>
+</ion-header>
+<ion-content padding>
+  <div *ngIf="member?.mb_hashname">
+    <ion-item no-lines>
+      <ion-avatar item-start>
+        <img src="{{member?.mb_photo}}">
+      </ion-avatar>
+      <h2>{{member?.mb_hashname}} ( {{member?.mb_email_id}} )</h2>
+      <p>{{member?.mb_firstname}} {{member?.mb_lastname}}</p>
+    </ion-item>
+  </div>
+  <form [formGroup]="committeememberForm" (ngSubmit)="addCommitteeMember(committeememberForm.value)">
+    <ion-item item-end>
+      <ion-label>Hash Name</ion-label>
+      <ion-input placeholder="Select Hash Name" (click)="selectMember(smember)" disabled value="{{smember}}" formControlName="ref_mb"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Title</ion-label>
+      <ion-select formControlName="ro_name" [ngModelOptions]="{standalone: true}" [(ngModel)]="roItem">
+        <ion-option *ngFor="let roItem of role$|async" [value]="roItem">{{roItem.ro_name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Display Order</ion-label>
+      <ion-input placeholder="Text Input" disabled value="{{roItem?.ro_order}}" formControlName="cm_sort"></ion-input>
+    </ion-item>
+
+    <ion-buttons text-center>
+      <button ion-button color="header" round small type="submit">Submit</button>
+      <button ion-button color="header" round small type="button" (click)="goback()">Cancel</button>
+    </ion-buttons>
+  </form>
+</ion-content>

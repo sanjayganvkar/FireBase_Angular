@@ -1,0 +1,61 @@
+<ion-header>
+  <headercomponent></headercomponent>
+</ion-header>
+<ion-content padding>
+
+  <form [formGroup]="harelineForm" (ngSubmit)="updateHareline(id, harelineForm.value)">
+    <ion-item>
+      <ion-label>Run Number</ion-label>
+      <ion-input text-right  type="number" formControlName="hl_runno"></ion-input>
+    </ion-item>
+    <control-messages [control]="harelineForm.controls.hl_runno"></control-messages>
+    <ion-item>
+      <ion-label>Run Description</ion-label>
+      <ion-input  text-right formControlName="hl_name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Run Date</ion-label>
+      <ion-datetime text-right  [(ngModel)]="hl_datetime" max="{{MM}}-12-31" formControlName="hl_datetime" displayFormat="DD-MMM-YYYY"></ion-datetime>
+    </ion-item>
+    <control-messages [control]="harelineForm.controls.hl_datetime"></control-messages>
+    <ion-item>
+      <ion-label>Publish</ion-label>
+      <ion-select  text-right formControlName="hl_publish">
+        <ion-option selected value="false">False</ion-option>
+        <ion-option value="true">True</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-list (click)="selectHareList(hares)">
+      <ion-item>
+        <ion-label>Hares</ion-label>
+        <ion-input text-right  value="{{hares}}" formControlName="hl_hare"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list (click)="selectScribeList(scribe)">
+      <ion-item>
+        <ion-label>Scribe</ion-label>
+        <ion-input text-right  value="{{scribe}}" formControlName="hl_scribe"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-item>
+      <ion-label>Run Site</ion-label>
+      <ion-input text-right  formControlName="hl_runsite"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Longitude, Latitude</ion-label>
+      <ion-input text-right  formControlName="hl_gps"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Food</ion-label>
+      <ion-input text-right  formControlName="hl_comment"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Guest Fee</ion-label>
+      <ion-input text-right  formControlName="hl_guestfee"></ion-input>
+    </ion-item>
+    <ion-buttons text-center>
+      <button ion-button color="header" small round [disabled]="!harelineForm.valid" type="submit">Submit</button>
+      <button ion-button text-center color="header" item-right round small type="button" (click)="goback()">Cancel</button>
+    </ion-buttons>
+  </form>
+</ion-content>

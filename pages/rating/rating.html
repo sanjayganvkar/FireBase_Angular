@@ -1,0 +1,41 @@
+<ion-header>
+    <headercomponent></headercomponent>
+</ion-header>
+<ion-content padding>
+    <ion-card>
+        <ion-card-header>
+            Rate the run
+        </ion-card-header>
+        <ion-card-content>
+            <form [formGroup]="ratingForm" (ngSubmit)="addRating(ratingForm.value)">
+                <ion-item text-wrap *ngFor="let rt of ( rating$|async )">
+                    <ion-grid no-padding no-margin>
+                        <ion-row>
+                            <ion-col>
+                                <ion-icon color="shhh-red" [name]="rt.rt_image"></ion-icon>
+                            </ion-col>
+                            <ion-col text-center *ngFor="let star of stars[rt.rt_name]; let i = index" tappable (click)="starClicked(i,rt.rt_name )">
+                                <ion-icon color="shhh-yellow" [name]="star"></ion-icon>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-item>
+                <ion-item>
+                    <ion-label>
+                        <b>Category</b>
+                    </ion-label>
+                    <ion-select [formControl]="ratingForm.controls['hc_name']">
+                        <ion-option *ngFor="let hc of hcat$|async">{{hc.hc_name}}</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-textarea placeholder="Enter your comments here" formControlName="hr_comment"></ion-textarea>
+                </ion-item>
+                <ion-buttons text-center>
+                    <button ion-button color="header" small round type="submit">Submit</button>
+                    <button ion-button color="header" small round type="button" (click)="goback()">Cancel</button>
+                </ion-buttons>
+            </form>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

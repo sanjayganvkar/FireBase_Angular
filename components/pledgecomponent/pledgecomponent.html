@@ -1,0 +1,80 @@
+<ion-list *ngIf='page$=="pledge"'>
+  <ion-item *ngFor="let pl of ( pledge$ | async ) " (click)="viewPledge(pl)">
+    <ion-avatar item-start *ngIf="displayPic||displayPic==undefined">
+      <img src="{{pl.mb_photo}}">
+    </ion-avatar>
+    <div *ngIf='page$=="pledge"'>
+      <h2>
+        <b> #{{pl.hl_runno}}, {{pl.pl_date|date:'dd-MMM-yyyy'}}, {{pl.mb_hashname}}{{hl_runno}}
+        </b>
+      </h2>
+    </div>
+    <p>
+      <b>{{pl.pt_name}}:</b> {{pl.pl_qty}} {{pl.pi_name}}</p>
+    <p [ngStyle]="{'color': pl.pl_pymt_status=='Unpaid'|| pl.pl_pymt_status=='Written Off'? 'red' : 'green'}">{{pl.pl_pymt_status}}: ${{pl.pl_amount}}</p>
+  </ion-item>
+</ion-list>
+<ion-list *ngIf='page$=="view"'>
+  <ion-item *ngFor="let pl of ( pledge$ | async ) " (click)="viewPledge(pl)">
+    <ion-item-divider color="header2">Pledge Details</ion-item-divider>
+    <br>
+    <img class="circle-pic" src={{pl.mb_photo}}>
+
+    <div color="primary" stacked="" class="label label-md label-md-primary">
+      Hashname
+      <br>
+      <h2>
+        {{pl.mb_hashname}}
+      </h2>
+      <br>
+    </div>
+    <div color="primary" stacked="" class="label label-md label-md-primary">
+      Run No
+      <br>
+      <h2>
+        {{pl.hl_runno}}
+      </h2>
+      <br>
+    </div>
+    <div color="primary" stacked="" class="label label-md label-md-primary">
+      Pledge Date
+      <br>
+      <h2>
+        {{pl.pl_date|date:'dd-MMM-yyyy'}}
+      </h2>
+      <br>
+    </div>
+    <div color="primary" stacked="" class="label label-md label-md-primary">
+      Pledge Type
+      <br>
+      <h2>
+        {{pl.pt_name}}
+      </h2>
+      <br>
+    </div>
+    <div color="primary" stacked="" class="label label-md label-md-primary">
+      Pledge Status
+      <br>
+      <h2>
+        {{pl.pl_pymt_status}}
+      </h2>
+      <br>
+    </div>
+    <div color="primary" stacked="" class="label label-md label-md-primary">
+      Amount
+      <br>
+      <h2>
+        {{pl.pl_qty}} {{pl.pi_name}}: ${{pl.pl_amount}}
+      </h2>
+      <br>
+    </div>
+    <div color="primary" stacked="" class="label label-md label-md-primary">
+      Comment
+      <br>
+      <h2>
+        {{pl.pl_description}}
+      </h2>
+      <br>
+    </div>
+   </ion-item>
+</ion-list>

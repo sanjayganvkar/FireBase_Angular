@@ -1,0 +1,17 @@
+<ion-header>
+    <headercomponent></headercomponent>
+</ion-header>
+<ion-content>
+
+    <ion-item-divider text-wrap color="header2">In Memory of Departed Seletar Hash House Harriers</ion-item-divider>
+
+    <ion-slides autoplay="2000" loop="true" speed="2000">
+      <ion-slide *ngFor="let slide of onHomepics">
+        <p>{{slide.name}}</p>
+        <p>{{slide.nickName}}</p>
+        <p>{{slide.period}}</p>
+        <img src="{{slide.imagePath}}" />
+      </ion-slide>
+    </ion-slides>
+
+</ion-content>

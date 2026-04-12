@@ -1,0 +1,20 @@
+page-payment_add,
+page-payment_update {
+    .swiper-slide {
+        display: block;
+    }
+    ion-input,
+    text-input-md,
+    ion-select,
+    ion-textarea,
+    ion-list {
+        padding: 13px,  8px, 13px, 16px !important;
+        margin:13px,  8px, 13px, 16px !important;
+    }
+    ion-input{
+        text-align: right;
+    }
+    .text-input-md {
+        margin-left: 0px !important;
+    }
+}

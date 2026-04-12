@@ -1,0 +1,20 @@
+<ion-header>
+  <headercomponent></headercomponent>
+</ion-header>
+<ion-content padding>
+  <ion-card>
+    <ion-item>
+      <paymentcomponent [payment]="payment"></paymentcomponent>
+    </ion-item>
+  </ion-card>
+  <ion-fab *ngIf="hasUpdPaymentAccess" bottom right>
+    <button ion-fab mini (click)="updatePayment(id)" color="header">
+      <ion-icon name="create"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-fab *ngIf="hasDelPaymentAccess" top right>
+    <button ion-fab mini (click)="deletePayment(id)" color="header">
+      <ion-icon name="trash"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

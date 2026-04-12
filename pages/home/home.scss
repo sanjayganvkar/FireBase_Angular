@@ -1,0 +1,23 @@
+.ios, .md {
+ 
+    home-page {
+  
+      #map {
+        width: 100%;
+        height: 50%;
+			}
+			ion-row{
+        color: #2d3b1c !important;
+			}
+
+    }
+ 
+}
+
+.container {
+	height: 0;
+	overflow: hidden;
+	padding-bottom: 60%; /* aspect ratio */
+	position: relative;
+}
+ 

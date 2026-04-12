@@ -1,0 +1,32 @@
+page-member {
+    .spinner-container {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }    
+}
+.block{
+    position: relative;
+    .deleteIcon{
+        position: absolute;
+        margin-left: 87%;
+        margin-top:7px;
+        color: #FFFFFF;
+    }
+}
+
+ion-datetime {
+    padding: 0px !important;
+    margin:10px !important;
+}
+.circle-pic{
+
+    width:100px;
+    height:100px;
+    display: block;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    margin: auto;
+    display: block;
+    margin-bottom: 10px;
+}

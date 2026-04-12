@@ -1,0 +1,62 @@
+<ion-header>
+  <headercomponent></headercomponent>
+</ion-header>
+
+<ion-content padding class='has-header has-subheader'>
+  <ion-card>
+    <ion-card-header>
+      <ion-item-divider color="header2">Members</ion-item-divider>
+    </ion-card-header>
+
+    <!--ion-searchbar (ionInput)="getItems($event)"></ion-searchbar-->
+    <ion-card-content>
+
+      <ion-segment [(ngModel)]="segmember" >
+        <ion-segment-button value="Regulars" (click)="viewMemberStatus('Regular Member')">
+          Regular
+        </ion-segment-button>
+        <ion-segment-button value="LOA" (click)="viewMemberStatus('LOA')">
+          LOA
+        </ion-segment-button>
+        <ion-segment-button value="LifeMember" (click)="viewMemberStatus('Life Member')">
+          Life
+        </ion-segment-button>
+        <ion-segment-button value="LifeHonMember" (click)="viewMemberStatus('Life Member Hon')">
+          Life Hon
+        </ion-segment-button>
+        <ion-segment-button value="Resigned" (click)="viewMemberStatus('Resigned')">
+          Resigned
+        </ion-segment-button>
+        <ion-segment-button value="all" (click)="viewMemberStatus('All')">
+            All
+          </ion-segment-button>
+      </ion-segment>
+
+      <ion-searchbar (input)="search($event)" placeholder="Search">
+      </ion-searchbar>
+
+      <div *ngIf="searching" class="spinner-container">
+        <ion-spinner></ion-spinner>
+      </div>
+      <ion-list>
+        <ion-item *ngFor="let mbr of ( member$ | async ) " (click)="viewMember(mbr)">
+          <ion-avatar item-start>
+            <img src="{{mbr.mb_photo}}">
+          </ion-avatar>
+          <h2>{{mbr.mb_hashname}}</h2>
+          <p> {{mbr.mb_status}} </p>
+          <p> {{mbr.mb_birthdate| date:'dd-MMM-yyyy'}}</p>
+          <!--button ion-button (click)="deleteMember(mbr.id)" clear item-end><ion-icon name="trash"></ion-icon></button-->
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+    
+  </ion-card>
+
+  <ion-fab *ngIf="hasAddMemberAccess" bottom right>
+    <button ion-fab mini (click)="addMember()" color="header">
+      <ion-icon name="person-add"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

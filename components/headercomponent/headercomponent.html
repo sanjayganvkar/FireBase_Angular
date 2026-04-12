@@ -1,0 +1,22 @@
+<ion-navbar color="header">
+  <button ion-button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>Seletar HHH</ion-title>
+
+  <ion-buttons end>
+    <button *ngIf="!authService.isLoggedIn" (click)="doLogin()" ion-button icon-only>
+      <ion-icon name="log-in"></ion-icon>
+    </button>
+
+    <button *ngIf="authService.isLoggedIn" (click)="doLogout()" ion-button icon-only>
+      <ion-icon name="log-out"></ion-icon>
+    </button>
+
+  </ion-buttons>
+
+</ion-navbar>
+<ion-card>
+  <p style="margin-right:6px;text-align:right">Logged in as: 
+    <ion-badge color="green" (click)="viewMember(currentUser)">{{currentUser?.mb_hashname}}</ion-badge></p>
+</ion-card>

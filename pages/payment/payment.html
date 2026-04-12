@@ -1,0 +1,42 @@
+<ion-header>
+  <headercomponent></headercomponent>
+</ion-header>
+<ion-content>
+  <ion-item-divider color="header2" (click)="toggleLOA()">LOA</ion-item-divider>
+  <div *ngIf="showLOA">
+    <ion-card>
+      <ion-searchbar (input)="search($event,payment_LOA,'LOA')" placeholder="Search">
+      </ion-searchbar>
+      <paymentcomponent [payment]="payment_LOA" [paymenttype]="paymenttype"></paymentcomponent>
+    </ion-card>
+  </div>
+  <ion-item-divider color="header2" (click)="toggleRegular()">Regular Member</ion-item-divider>
+  <div *ngIf="showRegular">
+    <ion-card>
+      <ion-searchbar (input)="search($event, payment_Regular,'Regular')" placeholder="Search">
+      </ion-searchbar>
+      <paymentcomponent [payment]="payment_Regular" [paymenttype]="paymenttype"></paymentcomponent>
+    </ion-card>
+  </div>
+  <ion-item-divider color="header2" (click)="toggleResigned()">Resigned</ion-item-divider>
+  <div *ngIf="showResigned">
+    <ion-card>
+      <ion-searchbar (input)="search($event, payment_Resigned,'Resigned')" placeholder="Search">
+      </ion-searchbar>
+      <paymentcomponent [payment]="payment_Resigned" [paymenttype]="paymenttype"></paymentcomponent>
+    </ion-card>
+  </div>
+
+</ion-content>
+<ion-content *ngIf="!hasViewPaymentAccess">
+  <ion-item text-wrap>
+    <ion-item-divider color="header2">No Access to Payments</ion-item-divider>
+  </ion-item>
+</ion-content>
+<div *ngIf="hasAddPaymentAccess">
+  <ion-fab bottom right>
+    <button ion-fab mini (click)="addPayment()" color="header">
+      <ion-icon name="person-add"></ion-icon>
+    </button>
+  </ion-fab>
+</div>

@@ -1,0 +1,37 @@
+<ion-header>
+  <headercomponent></headercomponent>
+</ion-header>
+<ion-content padding>
+
+  <form *ngIf="paymentForm" [formGroup]="paymentForm" (ngSubmit)="updatePayment(id, paymentForm.value)">
+    <ion-item>
+      <ion-label>Hash Name</ion-label>
+      <ion-input disabled text-right placeholder="Text Input" formControlName="mb_hashname" value="{{mb_hashname}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Payment Date</ion-label>
+      <ion-datetime [(ngModel)]="py_date" [ngModelOptions]="{standalone: true}" displayFormat="DD-MM-YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Payment Type</ion-label>
+      <ion-input text-right disabled placeholder="Text Input" formControlName="py_type" value="{{py_type}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Amount</ion-label>
+      <ion-input text-right type="number" formControlName="py_amount" value="{{pType?.py_amount}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Remarks</ion-label>
+      <ion-textarea text-right formControlName="py_description"></ion-textarea>
+    </ion-item>
+    <ion-buttons text-center>
+      <button ion-button color="header" small round type="submit">Submit</button>
+      <button ion-button color="header" small round type="button" (click)="goback()">Cancel</button>
+    </ion-buttons>
+  </form>
+  <ion-fab bottom right>
+    <button ion-fab mini (click)="deletePayment(id)" color="header">
+      <ion-icon name="trash"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

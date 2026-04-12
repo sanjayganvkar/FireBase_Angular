@@ -1,0 +1,65 @@
+<ion-header>
+  <headercomponent></headercomponent>
+</ion-header>
+<ion-content padding no-line>
+
+  <form [formGroup]="memberForm" (ngSubmit)="updateMember(id, memberForm.value)">
+    <ion-item>
+      <ion-label>Hash Name</ion-label>
+      <ion-input text-right formControlName="mb_hashname"></ion-input>
+    </ion-item>
+    <control-messages [control]="memberForm.controls.mb_hashname"></control-messages>
+    <ion-item>
+      <ion-label>First Name</ion-label>
+      <ion-input text-right formControlName="mb_firstname"></ion-input>
+    </ion-item>
+    <control-messages text-right [control]="memberForm.controls.mb_firstname"></control-messages>
+    <ion-item>
+      <ion-label>Last Name</ion-label>
+      <ion-input text-right formControlName="mb_lastname"></ion-input>
+    </ion-item>
+    <control-messages [control]="memberForm.controls.mb_lastname"></control-messages>
+    <ion-item>
+      <ion-label>Email Address</ion-label>
+      <ion-input text-right formControlName="mb_email_id"></ion-input>
+    </ion-item>
+    <control-messages [control]="memberForm.controls.mb_email_id"></control-messages>
+    <ion-item>
+      <ion-label>Birthdate</ion-label>
+      <ion-datetime text-right formControlName="mb_birthdate" displayFormat="DD-MMM-YYYY"></ion-datetime>
+    </ion-item>
+    <control-messages [control]="memberForm.controls.mb_birthdate"></control-messages>
+    <ion-item>
+      <ion-label>Mobile</ion-label>
+      <ion-input text-right formControlName="mb_contact_mobile"></ion-input>
+    </ion-item>
+    <control-messages [control]="memberForm.controls.mb_contact_mobile"></control-messages>
+    <ion-item>
+      <ion-label>Status</ion-label>
+      <ion-select [formControl]="memberForm.controls['mb_status']">
+        <ion-option *ngFor="let st of status$|async">{{st.st_name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <control-messages [control]="memberForm.controls.mb_status"></control-messages>
+    <ion-item>
+      <ion-label>Member Phote</ion-label>
+      <ion-input text-right formControlName="mb_photo"></ion-input>
+    </ion-item>
+    <ion-icon name="camera" (click)="launchCamera()"></ion-icon>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <ion-card class="block">
+            <ion-icon name="trash" (click)="DeletePicture()" class="deleteIcon"></ion-icon>
+            <img src="{{mb_photo}}" />
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-buttons text-center>
+      <!--button ion-button text-center color="header" item-right small type="submit">Submit</button-->
+      <button ion-button color="header" small round [disabled]="!memberForm.valid" type="submit">Submit</button>
+      <button ion-button text-center color="header" item-right small type="button" (click)="goback()">Cancel</button>
+    </ion-buttons>
+  </form>
+</ion-content>

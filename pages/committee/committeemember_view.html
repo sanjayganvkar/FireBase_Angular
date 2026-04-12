@@ -1,0 +1,38 @@
+<ion-header>
+  <headercomponent></headercomponent>
+</ion-header>
+<ion-content padding>
+  <ion-card>
+    <ion-item-divider>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="{{mb_photo}}">
+        </ion-avatar>
+        <h2>{{mb_hashname}} ( {{mb_email_id}} )</h2>
+        <p>{{mb_firstname}} {{mb_lastname}}</p>
+      </ion-item>
+    </ion-item-divider>
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            Title
+          </ion-col>
+          <ion-col>
+            {{ro_name}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-card>
+  <ion-fab bottom right>
+    <button *ngIf="hasUpdCMbrAccess" ion-fab (click)="updateCommitteeMember(id)" color="header">
+      <ion-icon name="create"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-fab top right>
+    <button *ngIf="hasDelCMbrAccess" ion-fab (click)="deleteCommitteeMember(id, ref_mb)" color="header">
+      <ion-icon name="trash"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

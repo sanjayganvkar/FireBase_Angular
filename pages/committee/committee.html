@@ -1,0 +1,59 @@
+<ion-header>
+  <headercomponent></headercomponent>
+</ion-header>
+<ion-content padding>
+
+  <ion-card>
+    <ion-card-header>
+      <h1>
+        <b>{{committee?.co_name}}</b>
+      </h1>
+      <h2>{{committee?.co_email_id}}</h2>
+      <h3>{{committee?.co_fromdate| date:'dd-MMM-yyyy'}} To {{committee?.co_todate| date:'dd-MMM-yyyy'}}</h3>
+    </ion-card-header>
+
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-item-divider item-start color="header2">
+        Committee Members
+        <ion-icon *ngIf="hasAddCMbrAccess" name="person-add" item-end (click)="addCommitteeMember()"></ion-icon>
+      </ion-item-divider>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-searchbar (input)="search($event)" placeholder="Search">
+      </ion-searchbar>
+      <div *ngIf="searching" class="spinner-container">
+        <ion-spinner></ion-spinner>
+      </div>
+      <ion-list>
+        <ion-item *ngFor="let cmbr of committeeMember$|async" (click)="viewCommitteeMember(cmbr)">
+          <ion-avatar item-start>
+            <img src="{{cmbr.mb_photo}}">
+          </ion-avatar>
+          <h2>
+            <b>{{cmbr.ro_name}}</b>
+          </h2>
+          <h2>{{cmbr.mb_hashname}}</h2>
+          <p> {{cmbr.mb_email_id}} </p>
+        </ion-item>
+      </ion-list>
+      <hr>
+    </ion-card-content>
+    <ion-card-content>
+
+
+      <b>Contact Details</b>
+
+      <br>If you need to get in touch, email the onsecs.
+      <br>
+      <br>
+      <b>Postal Address:</b>
+      <br>61 Club Street
+      <br>Singapore 069436
+      <br>
+      <br>The Seletar HHH established it's net presence on February 1st 1995.
+    </ion-card-content>
+  </ion-card>
+</ion-content>

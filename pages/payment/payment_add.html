@@ -1,0 +1,44 @@
+<ion-header>
+  <headercomponent></headercomponent>
+</ion-header>
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      <ion-item-divider color="header2">Add Payment</ion-item-divider>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="paymentForm" (ngSubmit)="addPayment(paymentForm.value)">
+        <ion-item item-end>
+          <ion-label>Hash Name</ion-label>
+          <ion-input text-right (click)="selectMember(smember)" value="{{smember}}" formControlName="mb_hashname"></ion-input>
+        </ion-item>
+        <control-messages [control]="paymentForm.controls.mb_hashname"></control-messages>
+        <ion-item>
+          <ion-label>Payment Date</ion-label>
+          <ion-datetime text-right [(ngModel)]="py_date" formControlName="py_date" displayFormat="DD-MM-YYYY"></ion-datetime>
+          <!--ion-datetime [(ngModel)]="py_date" [ngModelOptions]="{standalone: true}" displayFormat="DD-MM-YYYY"></ion-datetime-->
+        </ion-item>
+        <control-messages [control]="paymentForm.controls.py_date"></control-messages>
+        <ion-item>
+          <ion-label>Payment Type</ion-label>
+          <ion-select text-right formControlName="py_type" [ngModelOptions]="{standalone: true}" [(ngModel)]="pType">
+            <ion-option *ngFor="let pType of (paymenttype$|async)" [value]="pType">{{pType.py_type}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <control-messages [control]="paymentForm.controls.py_type"></control-messages>
+        <ion-item>
+          <ion-label>Amount</ion-label>
+          <ion-input text-right type="number" formControlName="py_amount" value="{{pType?.py_amount}}"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Remarks</ion-label>
+          <ion-textarea text-right formControlName="py_description"></ion-textarea>
+        </ion-item>
+        <ion-buttons text-center>
+          <button ion-button color="header" small round [disabled]="!paymentForm.valid" type="submit">Submit</button>
+          <button ion-button color="header" small round type="button" (click)="goback()">Cancel</button>
+        </ion-buttons>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

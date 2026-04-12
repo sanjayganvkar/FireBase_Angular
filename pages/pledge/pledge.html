@@ -1,0 +1,36 @@
+<ion-header>
+  <headercomponent></headercomponent>
+</ion-header>
+<ion-content>
+  <ion-item-divider color="header2" (click)="togglePaid()">Paid Pledges</ion-item-divider>
+  <div *ngIf="showPaid">
+    <ion-card>
+      <ion-searchbar (input)="search($event,'Paid')" placeholder="Search">
+      </ion-searchbar>
+      <pledgecomponent [pledge$]="pledge_paid" [page$]="page"></pledgecomponent>
+    </ion-card>
+  </div>
+  <ion-item-divider color="header2" (click)="toggleUnpaid()">Unpaid Pledges</ion-item-divider>
+  <div *ngIf="showUnpaid">
+    <ion-card>
+      <ion-searchbar (input)="search($event,'Unpaid')" placeholder="Search">
+      </ion-searchbar>
+      <pledgecomponent [pledge$]="pledge_unpaid" [page$]="page"></pledgecomponent>
+    </ion-card>
+  </div>
+  <ion-item-divider color="header2" (click)="toggleWrittenOff()">Written Off Pledges</ion-item-divider>
+  <div *ngIf="showWrittenOff">
+    <ion-card>
+      <ion-searchbar (input)="search($event,'WrittenOff')" placeholder="Search">
+      </ion-searchbar>
+      <pledgecomponent [pledge$]="pledge_writtenoff" [page$]="page"></pledgecomponent>
+    </ion-card>
+  </div>
+
+  <ion-fab *ngIf="hasAddRunPledgeAccess || hasAddBdayPledgeAccess" bottom right>
+    <button ion-fab mini (click)="addPledge()" color="header">
+      <ion-icon name="person-add"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

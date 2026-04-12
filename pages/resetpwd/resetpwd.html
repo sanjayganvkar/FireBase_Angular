@@ -1,0 +1,19 @@
+<ion-header>
+    <headercomponent></headercomponent>
+</ion-header>
+<ion-content padding>
+  <ion-card-header>
+    <ion-item-divider color="header2">Reset Password</ion-item-divider>
+  </ion-card-header>
+  <form [formGroup]="resetpwdForm" (submit)="resetPwd()" novalidate>
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input formControlName="mb_email_id" type="email" placeholder="Your email address"
+       ></ion-input>
+    </ion-item>
+    <ion-buttons text-center>
+      <button ion-button color="header" small type="submit">Reset</button>
+      <button ion-button color="header" small type="button" (click)="goback()">Cancel</button>
+    </ion-buttons>
+  </form>
+</ion-content>

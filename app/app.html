@@ -1,0 +1,21 @@
+<ion-menu [content]="mycontent ">
+  <ion-header>
+    <ion-toolbar color="header">
+      <ion-title>Seletar Hash House Harriers</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button text-left ion-item *ngFor="let p of filter(pages)" (click)="openPage(p)">
+        {{p.title}}
+
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav #mycontent [root]="rootPage" swipeBackEnabled="true"></ion-nav>
+
+<div *ngIf="authService.isLoggedIn">

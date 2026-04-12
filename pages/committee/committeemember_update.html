@@ -1,0 +1,29 @@
+<ion-header>
+    <headercomponent></headercomponent>
+</ion-header>
+<ion-content padding>
+  <ion-item no-lines>
+    <ion-avatar item-start>
+      <img src="{{mb_photo}}">
+    </ion-avatar>
+    <h2>{{mb_hashname}} ( {{mb_email_id}} )</h2>
+    <p>{{mb_firstname}} {{mb_lastname}}</p>
+  </ion-item>
+
+  <form [formGroup]="committeememberForm" (ngSubmit)="updateCommitteeMember(id, committeememberForm.value)">
+    <ion-item>
+      <ion-label>Title</ion-label>
+      <ion-select formControlName="ro_name" multiple=true>
+        <ion-option *ngFor="let ro of role$|async">{{ro.ro_name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Display Order</ion-label>
+      <ion-input placeholder="Text Input" formControlName="cm_sort"></ion-input>
+    </ion-item>
+    <ion-buttons text-center>
+      <button ion-button text-center color="header" item-right small  round type="submit">Submit</button>
+      <button ion-button text-center color="header" item-right small  round type="button" (click)="goback()">Cancel</button>
+    </ion-buttons>
+  </form>
+</ion-content>

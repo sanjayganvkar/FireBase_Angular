@@ -1,0 +1,78 @@
+<ion-header>
+  <headercomponent></headercomponent>
+</ion-header>
+<ion-content padding class='has-header has-subheader'>
+  <ion-card>
+    <ion-card-header>
+      <ion-item-divider color="header2">Contact Details</ion-item-divider>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-segment [(ngModel)]="segmember">
+        <ion-segment-button value="all" (click)="viewMemberStatus('All')">
+          All
+        </ion-segment-button>
+        <ion-segment-button value="Regular" (click)="viewMemberStatus('Regular Member')">
+          Regular
+        </ion-segment-button>
+        <ion-segment-button value="LOA" (click)="viewMemberStatus('LOA')">
+          LOA
+        </ion-segment-button>
+        <ion-segment-button value="Resigned" (click)="viewMemberStatus('Resigned')">
+          Resigned
+        </ion-segment-button>
+      </ion-segment>
+
+      <ion-searchbar (input)="search($event)" placeholder="Search">
+      </ion-searchbar>
+
+      <ion-grid>
+        <ion-row align-items-center>
+          <ion-col></ion-col>
+          <ion-col>
+            <b>Ins</b>
+          </ion-col>
+          <ion-col>
+            <b>Q1</b>
+          </ion-col>
+          <ion-col>
+            <b>Q2</b>
+          </ion-col>
+          <ion-col>
+            <b>Q3</b>
+          </ion-col>
+          <ion-col>
+            <b>Q4</b>
+          </ion-col>
+        </ion-row>
+
+        <ion-row align-items-center>
+          <ion-col>
+            <ion-row>
+              <img class="circle-pic" src="assets/imgs/1.jpg"> </ion-row>
+            <ion-row justify-content-center class="ion-row-rheader">3some</ion-row>
+
+          </ion-col>
+          <ion-col>S$20</ion-col>
+          <ion-col>S$150</ion-col>
+          <ion-col>S$150</ion-col>
+          <ion-col>S$150</ion-col>
+          <ion-col>S$150</ion-col>
+        </ion-row>
+        <hr />
+        <ion-row align-items-center>
+          <ion-col>
+            <ion-row>
+              <img class="circle-pic" src="assets/imgs/2.jpg"> </ion-row>
+            <ion-row justify-content-center class="ion-row-rheader">Harshman</ion-row>
+          </ion-col>
+          <ion-col>S$20</ion-col>
+          <ion-col>S$150</ion-col>
+          <ion-col>S$150</ion-col>
+          <ion-col>S$150</ion-col>
+          <ion-col>S$150</ion-col>
+        </ion-row>
+        <hr />
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

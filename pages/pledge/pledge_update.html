@@ -1,0 +1,68 @@
+<ion-header>
+  <headercomponent></headercomponent>
+</ion-header>
+<ion-content padding>
+  <form [formGroup]="pledgeForm" (ngSubmit)="updatePledge(id, pledgeForm.value)">
+    <ion-item>
+      <ion-label>Hash Names</ion-label>
+      <ion-input text-right disabled placeholder="Text Input" formControlName="mb_hashname"></ion-input>
+    </ion-item>
+    <control-messages [control]="pledgeForm.controls.mb_hashname"></control-messages>
+    <ion-item>
+      <ion-label>Run No</ion-label>
+      <ion-input text-right type="number" formControlName="hl_runno" [(ngModel)]="hl_runno"></ion-input>
+    </ion-item>
+    <control-messages [control]="pledgeForm.controls.hl_runno"></control-messages>
+    <ion-item>
+      <ion-label>Pledge Date</ion-label>
+      <ion-datetime [(ngModel)]="pl_date" formControlName="pl_date" displayFormat="DD-MM-YYYY"></ion-datetime>
+    </ion-item>
+    <control-messages [control]="pledgeForm.controls.pl_date"></control-messages>
+    <ion-item>
+      <ion-label>Pledge Type</ion-label>
+      <ion-select formControlName="pt_name">
+        <ion-option *ngFor="let pt of pledgetype$|async">{{pt.pt_name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <control-messages [control]="pledgeForm.controls.pt_name"></control-messages>
+    <ion-item>
+      <ion-label>Pledge Item</ion-label>
+      <ion-select formControlName="pi_name" [(ngModel)]="pi_name" (ionChange)="changeSelect_pi_name(pi_name)">
+        <ion-option value="Crate of White">Crate of White</ion-option>
+        <ion-option value="Crate of Black">Crate of Black</ion-option>
+      </ion-select>
+    </ion-item>
+    <control-messages [control]="pledgeForm.controls.pi_name"></control-messages>
+    <ion-item>
+      <ion-label>Status</ion-label>
+      <ion-select formControlName="pl_pymt_status">
+        <ion-option value="Unpaid">Unpaid</ion-option>
+        <ion-option value="Paid">Paid</ion-option>
+        <ion-option value="Written Off">Written Off</ion-option>
+      </ion-select>
+    </ion-item>
+    <control-messages [control]="pledgeForm.controls.pl_pymt_status"></control-messages>
+    <ion-item>
+      <ion-label>Quantity</ion-label>
+      <ion-input text-right type="number" formControlName="pl_qty" [(ngModel)]="pl_qty" (input)="onInput_pl_qty(pl_qty)"></ion-input>
+    </ion-item>
+    <control-messages [control]="pledgeForm.controls.pl_qty"></control-messages>
+    <ion-item *ngIf="0 === 1">
+      <ion-icon name="apps" item-start></ion-icon>
+      <ion-label>Rate</ion-label>
+      <ion-input type="number" formControlName="pi_rate" disabled value="{{pi_rate}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Amount</ion-label>
+      <ion-input text-right type="number" formControlName="pl_amount" disabled [(ngModel)]="pl_amount"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Comment</ion-label>
+      <ion-input text-right formControlName="pl_description"></ion-input>
+    </ion-item>
+    <ion-buttons text-center>
+      <button ion-button color="header" small round [disabled]="!pledgeForm.valid" type="submit">Submit</button>
+      <button ion-button color="header" small round type="button" (click)="goback()">Cancel</button>
+    </ion-buttons>
+  </form>
+</ion-content>

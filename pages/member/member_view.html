@@ -1,0 +1,89 @@
+<ion-header>
+  <headercomponent></headercomponent>
+</ion-header>
+<ion-content padding>
+
+  <img class="circle-pic" src="{{mb_photo}}">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button>
+          <button ion-button small block outline color="shhh-blue" (click)=launchWhasApp()>WhatsApp</button>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button>
+          <button ion-button small block outline color="shhh-blue" (click)=launchEmail()>Email</button>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-card>
+    <ion-card-header>
+      <ion-item-divider color="header2">Contact Details</ion-item-divider>
+    </ion-card-header>
+    <ion-item>
+      <ion-icon name="ci-hareline" item-start large></ion-icon>
+      <h2> {{mb_hashname}} </h2>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="bowtie" item-start large></ion-icon>
+      <h2>{{mb_firstname}} {{mb_lastname}} </h2>
+    </ion-item>
+    <ion-item>
+      <ion-icon color="secondary" name="cash" item-left large></ion-icon>
+      <h2> {{mb_status}} </h2>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="beer" color="shhh-yellow" item-left large></ion-icon>
+      <!--ion-datetime disabled displayFormat="YYYY"  formControlName="mb_birthdate"></ion-datetime-->
+      <!--h2>{{mb_birthdate| date:'EE, LLLL d, yyyy hh:mm a'}}</h2-->
+      <h2> {{mb_birthdate| date:'dd-MMM-yyyy'}} </h2>
+      <!--h2> {{mb_birthdate| date:'EE, LLLL d, yyyy'}} </h2-->
+    </ion-item>
+    <ion-item>
+      <ion-icon name="at" color="shhh-red" item-left large (click)=launchEmail()></ion-icon>
+      <h2><a  (click)=launchEmail() class="button button-positive">{{mb_email_id}}</a>
+          </h2>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="call" item-left large (click)=launchPhoneCall()></ion-icon>
+      <!--ion-icon name="call" color="shhh-gray" item-left large onclick="window.plugins.socialsharing.shareViaWhatsAppToPhone('+31611111111', 'Message via WhatsApp', null /* img */, null /* url */, function() {console.log('share ok')})">msg via WhatsApp to phone number +31611111111></ion-icon-->
+      
+      <h2>
+          <a (click)=launchPhoneCall() class="button button-positive">{{mb_contact_mobile}}</a>
+            </h2>
+      
+    </ion-item>
+  </ion-card>
+  <ion-card *ngIf="isPledgeVisible||hasViewBdayPledgeAccess||hasViewRunPledgeAccess">
+    <ion-card-header>
+      <ion-item-divider color="header2">Pledges</ion-item-divider>
+    </ion-card-header>
+    <ion-item>
+      <!--b>Pledges</b-->
+      <pledgecomponent [pledge$]="pledge$" [displayPic]="displayPic" [page$]="page"></pledgecomponent>
+    </ion-item>
+  </ion-card>
+  <ion-card *ngIf="isPaymentVisible||hasViewPaymentAccess">
+    <ion-card-header>
+      <ion-item-divider color="header2">Payments</ion-item-divider>
+    </ion-card-header>
+    <ion-item>
+      <!--b>Pledges</b-->
+      <paymentcomponent [payment]="payment" [paymenttype]="paymenttype" [displayPic]="displayPic"></paymentcomponent>
+    </ion-item>
+  </ion-card>
+
+  <ion-fab *ngIf="hasUpdMemberAccess" bottom right>
+    <button ion-fab mini (click)="updateMember(id)" color="header">
+      <ion-icon name="create"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-fab *ngIf="hasDelMemberAccess" top right>
+    <button ion-fab mini (click)="deleteMember(id)" color="header">
+      <ion-icon name="trash"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

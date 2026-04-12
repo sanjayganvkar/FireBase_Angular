@@ -1,0 +1,21 @@
+page-pledge_add,
+page-pledge_update {
+    .swiper-slide {
+        display: block;
+    }
+    ion-input,
+    text-input-md,
+    ion-select,
+    ion-textarea,
+    ion-list {
+        padding: 13px,  8px, 13px, 16px !important;
+        margin:13px,  8px, 13px, 16px !important;
+    }
+    ion-input{
+        text-align: right;
+    }
+    .invalid {
+        border: 1px solid #ea6153;
+    }   
+    
+}

@@ -1,0 +1,21 @@
+<ion-header>
+  <headercomponent></headercomponent>
+</ion-header>
+<ion-content padding>
+  <ion-card>
+    <ion-item>
+
+      <pledgecomponent [pledge$]="pledge" [page$]="page"></pledgecomponent>
+    </ion-item>
+  </ion-card>
+  <ion-fab *ngIf="hasUpdRunPledgeAccess||hasUpdBdayPledgeAccess" bottom right>
+    <button ion-fab mini (click)="updatePledge(id)" color="header">
+      <ion-icon name="create"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-fab *ngIf="hasDelRunPledgeAccess||hasDelBdayPledgeAccess" top right>
+    <button ion-fab mini (click)="deletePledge(id)" color="header">
+      <ion-icon name="trash"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

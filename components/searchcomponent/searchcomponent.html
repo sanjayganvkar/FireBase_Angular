@@ -1,0 +1,17 @@
+<div>
+  <ion-content>
+    <form [formGroup]="searchForm" (ngSubmit)="addHareline()">
+      <ion-searchbar (input)="search($event)" placeholder="Search">
+      </ion-searchbar>
+      <ion-item no-lines *ngFor="let mbr of (observable$|async)">
+        <ion-label>{{mbr.mb_hashname}}</ion-label>
+
+        <ion-checkbox *ngIf="type=='c'||type==''||type==undefined" [ngModelOptions]="{standalone: true}" (ionChange)="setSelection( $event,mbr )"
+          [ngModel]="selectedArray[mbr.mb_hashname]"></ion-checkbox>
+      </ion-item>
+      <ion-buttons text-center>
+        <button ion-button color="header" small round type="submit">Select</button>
+      </ion-buttons>
+    </form>
+  </ion-content>
+</div>

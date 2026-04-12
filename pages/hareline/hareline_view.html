@@ -1,0 +1,120 @@
+<ion-header>
+  <headercomponent></headercomponent>
+</ion-header>
+<ion-content padding class="has-header has-subheader">
+  <ion-card>
+    <ion-item text-wrap>
+      <ion-item-divider color="header2">Run# {{hl_runno}} - {{hl_name}}</ion-item-divider>
+    </ion-item>
+    <ion-item>
+      <agm-map [latitude]="hl_gps_lat" [longitude]="hl_gps_lng" [zoom]="17">
+        <agm-marker [latitude]="hl_gps_lat" [longitude]="hl_gps_lng">
+        </agm-marker>
+      </agm-map>
+    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngIf="authService.isLoggedIn">
+          <ion-button>
+            <button ion-button small block outline color="shhh-blue" (click)="addAttendance(id)">Pull Card</button>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button>
+            <button ion-button small block outline color="shhh-blue" type="submit" (click)="launchNativeMap(hl_gps)">Directions</button>
+          </ion-button>
+        </ion-col>
+        <ion-col *ngIf="hasAddRunPledgeAccess||hasAddBdayPledgeAccess">
+          <ion-button>
+            <button ion-button small block outline color="shhh-blue" type="submit" (click)="addPledge(id)">Pledges</button>
+          </ion-button>
+        </ion-col>
+        <ion-col *ngIf="hasUpdRatingAccess">
+          <ion-button>
+            <button ion-button small block outline color="shhh-blue" type="submit" (click)="rateHareline(id)">Rate</button>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-item>
+      <ion-icon name="clock" color="shhh-gray" item-start></ion-icon>
+      {{hl_datetime| date:'dd-MMM-yyyy'}}
+    </ion-item>
+    <ion-item>
+      <ion-icon name="ci-hare1" color="shhh-brown" item-start></ion-icon>
+      {{hl_hare}}
+    </ion-item>
+    <ion-item>
+      <ion-icon name="ci-scribe1" item-start></ion-icon>
+      {{hl_scribe}}
+    </ion-item>
+    <ion-item text-wrap>
+      <ion-icon name="restaurant" item-start></ion-icon>
+      {{hl_comment}}
+    </ion-item>
+    <ion-item>
+      <ion-icon name="ci-place3" color="shhh-yellow" item-start></ion-icon>
+      {{hl_runsite}}
+    </ion-item>
+    <ion-item text-wrap>
+      <ion-icon name="logo-usd" color="shhh-green" item-start></ion-icon>
+      Guest Fee : {{hl_guestfee}}
+    </ion-item>
+  </ion-card>
+  <div *ngIf="authService.isLoggedIn">
+    <ion-card>
+      <ion-item>
+        <b>Pledges</b>
+      </ion-item>
+      <pledgecomponent [pledge$]="pledge$" [hareline]="hareline"></pledgecomponent>
+    </ion-card>
+    <ion-card>
+      <attendancecomponent [attendance$]="attendance$" [hareline]="hareline"></attendancecomponent>
+    </ion-card>
+    <ion-card>
+      <ion-item>
+        <b>Ratings</b>
+      </ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-9>
+            <ion-badge color="shhh-blue">Average</ion-badge>
+          </ion-col>
+          <ion-col col-3 style="text-align: right">
+            <ion-badge color="shhh-red">{{avgRating}}</ion-badge>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col style="border:solid  1px lightgray" col-6 *ngFor="let key of userRating$|async">
+            <ion-row style="color:blue">
+              <ion-col style="text-align: left">
+                <b>{{key.id}}</b>
+              </ion-col>
+              <ion-col style="text-align: right">
+                <b>{{mRatings[key.id]}}</b>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngFor="let key2 of objectKeys(key)">
+              <ion-col style="text-align: left" *ngIf='key2!="id"'>
+                {{key2}}
+              </ion-col>
+              <ion-col style="text-align: right" *ngIf='key2!="id"'>
+                {{key[key2]}}
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+  <ion-fab *ngIf="hasUpdHarelineAccess" bottom right>
+    <button mini ion-fab (click)="updateHareline()" color="header">
+      <ion-icon name="create"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-fab *ngIf="hasDelHarelineAccess" top right>
+    <button mini ion-fab (click)="deleteHareline(id)" color="header">
+      <ion-icon name="trash"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

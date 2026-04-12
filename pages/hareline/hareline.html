@@ -1,0 +1,42 @@
+<ion-header>
+  <headercomponent></headercomponent>
+</ion-header>
+<ion-content>
+  <ion-item-divider color="header2" (click)="togglePast()">Harelines (Past)</ion-item-divider>
+  <div *ngIf="showPast">
+    <ion-item text-wrap *ngFor="let hr of ( hareline_past$|async ) " (click)="viewHareline(hr)">
+
+      <ion-icon name="ci-hareline" item-start></ion-icon>
+
+      <ion-badge color="danger" item-end *ngIf="hr.hl_publish==='true'">
+        Upcoming
+      </ion-badge>
+      <b> #{{hr.hl_runno}}: {{hr.hl_datetime| date:'EE, d-LLL-yyyy'}}</b>
+      <p>
+        <b>Hares: </b> {{hr.hl_hare}}</p>
+      <p>
+        <b>Runsite: </b> {{hr.hl_runsite}}</p>
+    </ion-item>
+  </div>
+  <ion-item-divider color="header2" (click)="toggleFuture()">Harelines (Future)</ion-item-divider>
+  <div *ngIf="showFuture">
+    <ion-item text-wrap *ngFor="let hr of ( hareline$|async ) " (click)="viewHareline(hr)">
+      <ion-icon name="ci-hareline" item-start></ion-icon>
+      <ion-badge color="danger" item-end *ngIf="hr.hl_publish==='true'">
+        Upcoming
+      </ion-badge>
+      <b> #{{hr.hl_runno}}: {{hr.hl_datetime| date:'EE, d-LLL-yyyy'}}</b>
+      <p>
+        <b>Hares: </b> {{hr.hl_hare}}</p>
+      <p>
+        <b>Runsite: </b> {{hr.hl_runsite}}</p>
+    </ion-item>
+  </div>
+  <div *ngIf="hasAddHarelineAccess">
+    <ion-fab bottom right>
+      <button ion-fab mini (click)="addHareline()" color="header">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-fab>
+  </div>
+</ion-content>

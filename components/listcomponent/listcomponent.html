@@ -1,0 +1,60 @@
+<ion-content>
+  <ion-fab top right>
+
+    <button ion-fab mini mini (click)="addSelected()" color="header">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
+  <form [formGroup]="listForm">
+    <ion-card>
+      <ion-card-header>
+        <ion-item-divider color="header2">Selected List</ion-item-divider>
+      </ion-card-header>
+      <ion-list>
+        <ion-item *ngFor="let mbr of ( selectedMember  ) " (click)="deleteSelection(mbr)">
+          <ion-avatar item-start>
+            <img src="{{mbr.mb_photo}}">
+          </ion-avatar>
+          <h2>{{mbr.mb_hashname}}</h2>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <ion-item-divider color="header2">Select from below List</ion-item-divider>
+      </ion-card-header>
+      <ion-segment [(ngModel)]="segmember" [ngModelOptions]="{standalone: true}">
+        <ion-segment-button value="Regular" (click)="viewMemberStatus('Regular Member')">
+          Regular
+        </ion-segment-button>
+        <ion-segment-button value="LOA" (click)="viewMemberStatus('LOA')">
+          LOA
+        </ion-segment-button>
+        <ion-segment-button value="LifeMember" (click)="viewMemberStatus('Life Member')">
+          Life
+        </ion-segment-button>
+        <ion-segment-button value="Resigned" (click)="viewMemberStatus('Resigned')">
+          Resigned
+        </ion-segment-button>
+        <ion-segment-button value="all" (click)="viewMemberStatus('All')">
+          All
+        </ion-segment-button>
+      </ion-segment>
+      <ion-searchbar (input)="search($event)" placeholder="Search">
+      </ion-searchbar>
+      <div *ngIf="searching" class="spinner-container">
+        <ion-spinner></ion-spinner>
+      </div>
+      <ion-list>
+        <ion-item *ngFor="let mbr of ( member$ | async ) " (click)="addSelection(mbr)">
+          <ion-avatar item-start>
+            <img src="{{mbr.mb_photo}}">
+          </ion-avatar>
+          <h2>{{mbr.mb_hashname}}</h2>
+          <p> {{mbr.mb_status}} </p>
+          <p> {{mbr.mb_birthdate| date:'dd-MMM-yyyy'}}</p>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </form>
+</ion-content>

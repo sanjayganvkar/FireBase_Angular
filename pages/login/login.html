@@ -1,0 +1,29 @@
+<ion-header>
+  <headercomponent></headercomponent>
+</ion-header>
+<ion-content padding>
+
+  <ion-card>
+    <ion-item-divider color="header2">Login</ion-item-divider>
+    <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+      <ion-item>
+        <ion-label>Email Address</ion-label>
+        <ion-input type="text" formControlName="mb_email_id" value={{mb_email_id}}></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Password</ion-label>
+        <ion-input type="password" formControlName="mb_password" value={{mb_password}}></ion-input>
+      </ion-item>
+      <ion-buttons text-center>
+        <button ion-button color="header" small round type="submit">Login</button>
+        <button ion-button color="header" small round type="button" (click)="goback()">Cancel</button>
+      </ion-buttons>
+    </form>
+  </ion-card>
+  <button ion-button block clear (click)="register()">
+    New User Registration
+  </button>
+  <button ion-button block clear (click)="resetPwd()">
+    Forgot Password
+  </button>
+</ion-content>

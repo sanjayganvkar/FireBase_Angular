@@ -1,0 +1,26 @@
+<ion-grid>
+  <ion-row align-items-center>
+    <ion-col *ngIf="displayPic||displayPic==undefined"></ion-col>
+    <ion-col style="text-align:right" *ngFor="let pytype of  paymenttype ">
+      <b>{{pytype}}</b>
+    </ion-col>
+  </ion-row>
+
+  <ion-row align-items-center *ngFor="let key of objectKeys(payment)">
+    <ion-col *ngIf="displayPic||displayPic==undefined">
+      <ion-row>
+        <img class="circle-pic" src="{{payment[key].mb_photo}}">
+      </ion-row>
+      <ion-row justify-content-center class="ion-row-rheader">{{key}}</ion-row>
+    </ion-col>
+    <ion-col style="text-align:right" *ngFor="let pytype of paymenttype">
+      <span style="color:green" *ngIf="payment[key][pytype]!=undefined" (click)="viewPayment(payment[key][pytype+'id'])">
+        S${{payment[key][pytype]}}
+      </span>
+      <span style="color:red" *ngIf="payment[key][pytype]==undefined">
+        ----
+      </span>
+    </ion-col>
+    <hr/>
+  </ion-row>
+</ion-grid>
