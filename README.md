@@ -1,6 +1,6 @@
 "# FireBase_Angular" 
 
-Source for an Application for a Runners Club ( HashGroup ) originally written 
+Source for an Application for a Runners Club ( HashGroup ) I had originally written 
 with FireBase as the backend.
 
 Built using Ionic Angular as frontend, Firebase ( Google Firestore ) as back end.
